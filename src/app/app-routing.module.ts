@@ -14,12 +14,6 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }, {
-    path: 'parameter',
-    loadChildren: () => import('./parameter/parameter.module').then(m => m.ParameterPageModule)
-  }, {
-    path: 'dataset',
-    loadChildren: () => import('./dataset/dataset.module').then(m => m.DatasetPageModule)
   }
 ];
 
