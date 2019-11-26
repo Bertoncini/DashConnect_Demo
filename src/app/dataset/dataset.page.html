@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      DataSet
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item>
+      <ion-label floating>Nome DataSet</ion-label>
+      <ion-input [(ngModel)]="DataSet.Nome" name="DataSet1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>End-Point</ion-label>
+      <ion-input type="text" (focusout)="requestUrl()" [(ngModel)]="DataSet.UrlApi" name="End-Point DataSet1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Eixo X</ion-label>
+      <ion-select [(ngModel)]="DataSet.EixoX" name="Eixo X">
+        <div *ngFor="let field of retornoApi">
+          <ion-select-option value="{{field}}">{{field}} </ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Eixo Y</ion-label>
+      <ion-select [(ngModel)]="DataSet.EixoY" name="Eixo Y">
+        <div *ngFor="let field of retornoApi">
+          <ion-select-option value="{{field}}">{{field}} </ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="block" (click)="adicionar()">Salvar</ion-button>
+  </form>
+</ion-content>

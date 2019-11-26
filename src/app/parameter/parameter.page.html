@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Configuração de Relatório
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form>
+    <ion-item>
+      <ion-label floating>Relatório</ion-label>
+      <ion-input type="text" [(ngModel)]="item.NameRel" name="Relatório"></ion-input>
+    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Gráfico</ion-label>
+        <ion-select [(ngModel)]="item.Grafico" [ngModelOptions]="{standalone: true}">
+          <ion-select-option value="area">Area</ion-select-option>
+          <ion-select-option value="barraH">Barra Horizontal</ion-select-option>
+          <ion-select-option value="barraV">Barra Vertical</ion-select-option>
+          <ion-select-option value="bolha">Bolha</ion-select-option>
+          <ion-select-option value="scatter">Dispersão</ion-select-option>
+          <ion-select-option value="linha">Linha</ion-select-option>
+          <ion-select-option value="mix">Mix (Barra e Linha)</ion-select-option>
+          <ion-select-option value="pizza">Pizza</ion-select-option>
+          <ion-select-option value="polar">Polar area</ion-select-option>
+          <ion-select-option value="radar">Radar</ion-select-option>
+          <ion-select-option value="rosca">Rosca</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-fab horizontal="end">
+      <ion-fab-button size="small" (click)="adicionarDataSet()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-item>
+      <ion-label>DataSet</ion-label>
+    </ion-item>
+
+    <ion-list>
+      <ion-item-sliding *ngFor="let item of item.DataSets">
+        <ion-item>
+          {{item.Nome}}
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-button expand="block" color="danger" (click)="apagarDataSet(item)">
+            <ion-icon name="trash"></ion-icon>Apagar
+          </ion-button>
+          <ion-button expand="block" color="primary" (click)="editarDataSet(item)">
+            <ion-icon name="book"></ion-icon>Editar
+          </ion-button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-button expand="block" (click)="logForm()">Adicionar Relatório</ion-button>
+  </form>
+</ion-content>
