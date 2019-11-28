@@ -41,27 +41,15 @@ export class ParameterPage {
               const data = action.payload.doc.data() as User;
               if (data.uid === value) {
                 const id = action.payload.doc.id;
-                this.user = { id, ...data, pages: {} };
+                this.user = { id, ...data };
+                if (!this.user.pages)
+                  this.user.pages = [];
               }
             });
-
-            //     return actions.map(action => {
-            //       const data = action.payload.doc.data() as User;
-            //       if (!data.pages)
-            //         data.pages = [];
-            //       const id = action.payload.doc.id;
-            //       return { id, ...data };
-            //     });
-            // });
           }
           )
       }
     });
-    // this.storage.get('MenuDash').then(data => {
-    //   if (data) {
-    //     this.itens = data;
-    //   }
-    // });
 
     this.item = {
       NameRel: '',
@@ -106,9 +94,6 @@ export class ParameterPage {
     this.user.pages.push(this.item);
 
     this.usersRef.doc(this.user.id).update(this.user);
-    // this.storage.set('MenuDash', this.itens).then(data => {
-    //   this.events.publish('menu:addRel', data, Date.now());
-    // });
     this.modalCtrl.dismiss(this.user);
   }
 
@@ -141,22 +126,6 @@ export class ParameterPage {
   editarDataSet(dataSet) {
     this.adicionarDataSet(dataSet);
   }
-
-  // ionViewWillEnter() {
-  //   this.DataSet = this.navParams.get('DataSet')|| null;
-  //   if(this.DataSet)
-  //   {
-  //     let i = this.item.DataSets.indexOf(this.DataSet);
-  //     if(i > -1)
-  //     {
-  //       this.item.DataSets[i] = this.DataSet;  
-  //     }
-  //     else
-  //     {
-  //       this.item.DataSets.push(this.DataSet);
-  //     }
-  //   }
-  // }
 
   async confirmarExclusaoDataSet(dataSet) {
     let alert = await this.alertController.create({

@@ -16,7 +16,7 @@
     Para mais informações acesse <a href="https://github.com/Bertoncini/DashConnect">DashConnect</a>.
   </p>
 
-  <ion-fab horizontal="end">
+  <ion-fab vertical="bottom" horizontal="end" *ngIf="(!selectedItem?.Grafico)">
     <ion-fab-button size="small" (click)="openConfigPage()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

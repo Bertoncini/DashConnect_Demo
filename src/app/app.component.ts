@@ -29,12 +29,6 @@ export class AppComponent {
       url: '/home',
       icon: 'home',
       component: HomePage
-    },
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list',
-      component: ListPage
     }
   ];
 
@@ -51,7 +45,6 @@ export class AppComponent {
     public storage: Storage
   ) {
     firebaseuiAngularLibraryService.firebaseUiInstance.disableAutoSignIn();
-    //  firebase.auth().signOut();
     this.initializeApp();
     console.log('teslogin');
     this.storage.forEach((value: string, key: string, iterationNumber: Number) => {
@@ -71,7 +64,6 @@ export class AppComponent {
 
   successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult) {
     this.buscarMenu(signInSuccessData.authResult.user.uid, signInSuccessData);
-    this.router.navigateByUrl('/home', { state: { data: {} } });
   }
 
   buscarMenu(uid: string, signInSuccessData: FirebaseUISignInSuccessWithAuthResult) {
@@ -94,7 +86,14 @@ export class AppComponent {
             });
           }
         });
+        this.appPages.push({
+          title: 'Logout',
+          url: '/logout',
+          icon: 'exit',
+          component: ListPage
+        });
       });
+    this.router.navigateByUrl('/home', { state: { data: {} } });
   }
 
   errorCallback(errorData: FirebaseUISignInFailure) {
@@ -102,6 +101,10 @@ export class AppComponent {
   }
 
   openPage(page) {
+    if (page.url === "/logout") {
+      firebase.auth().signOut();
+      this.storage.clear();
+    }
     if (page.page) {
       let navigationExtras: NavigationExtras = {
         queryParams: {

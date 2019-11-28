@@ -14,8 +14,10 @@
     </ion-header>
 
     <ion-content>
-      <firebase-ui (signInSuccessWithAuthResult)="successCallback($event)" (signInFailure)="errorCallback($event)">
-      </firebase-ui>
+      <div id="firebaseui-auth-container">
+        <firebase-ui (signInSuccessWithAuthResult)="successCallback($event)" (signInFailure)="errorCallback($event)">
+        </firebase-ui>
+      </div>
     </ion-content>
 
   </ion-content>

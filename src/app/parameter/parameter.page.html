@@ -34,13 +34,8 @@
         </ion-select>
       </ion-item>
     </ion-list>
-    <ion-fab horizontal="end">
-      <ion-fab-button size="small" (click)="adicionarDataSet(undefined)">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
     <ion-item>
-      <ion-label>DataSet</ion-label>
+      <ion-label class="clickEnableCls" stacked (click)="adicionarDataSet(undefined)">DataSet</ion-label>
     </ion-item>
 
     <ion-list>
